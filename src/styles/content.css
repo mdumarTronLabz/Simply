@@ -1,0 +1,49 @@
+
+.simply-icon-btn {
+  border: none;
+  outline: none;
+  padding: 0;
+  display: flex;
+  cursor: pointer;
+  background: none;
+  position: relative; 
+}
+
+.simply-icon-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #d4e2f4; 
+  transform: translate(-50%, -50%) scale(1);
+  animation: simply-pulse 2s ease-out infinite;
+  z-index: -1; 
+  transition: smooth;
+}
+
+@keyframes simply-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
+}
+
+.simply-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+  border: none;
+  outline: none;
+}
+
+.simply-icon-btn:hover {
+  transform: scale(1.08);
+}
