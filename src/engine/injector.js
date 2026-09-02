@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Icon from "../components/Icon.jsx";
+import App from "../components/App.jsx";
 import contentCss from "../styles/content.css?inline";
 
 /* 
@@ -21,7 +21,7 @@ function positionHost(targetElement, host) {
   host.style.top = `${rect.bottom - ICON_SIZE + OFFSET}px`;
 }
 
-function mountIconNextTo(targetElement, { insertText, onOpen }) {
+function mountIconNextTo(targetElement, { insertText }) {
   targetElement.setAttribute(HANDLED_ATTR, "true");
 /* 
   // Mounted directly on <body>, completely outside the target site's own
@@ -45,11 +45,7 @@ function mountIconNextTo(targetElement, { insertText, onOpen }) {
   shadowRoot.appendChild(mountPoint);
 
   const root = createRoot(mountPoint);
-  root.render(
-    React.createElement(Icon, {
-      onClick: () => onOpen(targetElement, insertText),
-    }),
-  );
+  root.render(React.createElement(App, { targetElement, insertText }));
 
   positionHost(targetElement, host);
   trackedIcons.push({ targetElement, host });
@@ -64,11 +60,11 @@ function trackPositions() {
 }
 requestAnimationFrame(trackPositions);
 
-export function initInjector(adapter, { onOpen }) {
+export function initInjector(adapter) {
   // Catch chat boxes that already exist on page load.
   document.querySelectorAll(adapter.selector).forEach((el) => {
     if (!el.hasAttribute(HANDLED_ATTR)) {
-      mountIconNextTo(el, { insertText: adapter.insertText, onOpen });
+      mountIconNextTo(el, { insertText: adapter.insertText });
     }
   });
 
@@ -88,7 +84,7 @@ export function initInjector(adapter, { onOpen }) {
 
         matches.forEach((el) => {
           if (!el.hasAttribute(HANDLED_ATTR)) {
-            mountIconNextTo(el, { insertText: adapter.insertText, onOpen });
+            mountIconNextTo(el, { insertText: adapter.insertText});
           }
         });
       }
