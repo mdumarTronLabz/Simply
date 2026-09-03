@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { CATEGORIES } from "../data/messages.js";
+import { SearchIcon, PanelCopyIcon, ExpandIcon, CrossIcon } from "./SVGIcons.jsx";
+import "../assets/simply_icon.png";
+
+const iconImage = chrome.runtime.getURL("assets/simply_icon.png");
 
 const FILTERS =CATEGORIES;
 
@@ -7,8 +11,7 @@ export default function QuickPanel({
   messages,
   onCopy,
   onClose,
-  onExpand,
-  onAdd, //doubt what to do with this, we may not need this, but if we need to add new message then we can use this
+  onExpand
 }) {
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("All");
@@ -24,21 +27,26 @@ export default function QuickPanel({
   return (
     <div className="simply-panel">
       <div className="simply-panel-header">
-        <span className="simply-panel-title">Simply</span>
+        <span className="simply-panel-title">
+          <img src={iconImage} alt="simply icon" className="simply-icon-img" />
+        </span>
         <button
           type="button"
           className="simply-icon-only-btn"
-          aria-label="Settings"
+          onClick={onExpand}
+          aria-label="Expand View"
         >
-          ⚙
+          <ExpandIcon size={20} />
         </button>
       </div>
 
-      <div className="simply-search-wrap">
-        <span className="simply-search-icon">🔍</span>
+      <div className="simply-search-wrap" aria-label="Search messages">
+        <span className="simply-search-icon">
+          <SearchIcon size={20} />
+        </span>
         <input
           className="simply-search-input"
-          placeholder="Search templates..."
+          placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
@@ -62,6 +70,7 @@ export default function QuickPanel({
           <div key={m.id} className="simply-message-card">
             <div className="simply-message-card-top">
               <span className="simply-message-title">{m.title}</span>
+
               <div className="simply-tag-group">
                 {m.category
                   .filter((c) => c !== "All")
@@ -74,15 +83,15 @@ export default function QuickPanel({
                     </span>
                   ))}
               </div>
+              <button
+                type="button"
+                className="simply-copy-btn"
+                onClick={() => onCopy(m)}
+              >
+                <PanelCopyIcon size={14} />
+              </button>
             </div>
             <p className="simply-message-preview">{m.body}</p>
-            <button
-              type="button"
-              className="simply-copy-btn"
-              onClick={() => onCopy(m)}
-            >
-              Copy
-            </button>
           </div>
         ))}
         {filtered.length === 0 && (
@@ -93,25 +102,11 @@ export default function QuickPanel({
       <div className="simply-bottom-bar">
         <button
           type="button"
-          className="simply-close-pill"
+          className="simply-icon-only-btn"
           onClick={onClose}
           aria-label="Close"
-        />
-        <button
-          type="button"
-          className="simply-add-fab"
-          onClick={onAdd}
-          aria-label="Add new template"
         >
-          +
-        </button>
-        <button
-          type="button"
-          className="simply-icon-only-btn"
-          onClick={onExpand}
-          aria-label="Expand"
-        >
-          ⤢
+          <CrossIcon size={16} />
         </button>
       </div>
     </div>

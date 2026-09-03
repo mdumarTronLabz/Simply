@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { CATEGORIES } from "../data/messages.js";
+import {  BackIcon, CrossIcon } from "./SVGIcons.jsx";
 
-export default function NewMessageForm({ onSave, onBack }) {
+export default function NewMessageForm({ onSave, onBack, onClose }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
@@ -42,22 +43,23 @@ export default function NewMessageForm({ onSave, onBack }) {
             onClick={onBack}
             aria-label="Back"
           >
-            ←
+            <BackIcon size={28}/>
           </button>
           <span className="simply-panel-title">New Template</span>
           <button
             type="button"
             className="simply-icon-only-btn"
-            aria-label="Settings"
+            onClick={onClose}
+            aria-label="Close"
           >
-            ⚙
+            <CrossIcon size={16}/>
           </button>
         </div>
 
-        <label className="simply-form-label">Template Title</label>
+        <label className="simply-form-label">Message Title</label>
         <input
           className="simply-form-input"
-          placeholder="e.g., Intro Message"
+          placeholder="Intro Message"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -69,7 +71,7 @@ export default function NewMessageForm({ onSave, onBack }) {
             className="simply-variable-btn"
             onClick={insertVariable}
           >
-            + Variable
+            {"{Variable}"}
           </button>
         </div>
         <textarea
@@ -114,7 +116,7 @@ export default function NewMessageForm({ onSave, onBack }) {
         </div>
 
         <button type="button" className="simply-save-btn" onClick={handleSave}>
-          Save Template
+          Save Message
         </button>
       </div>
     </div>

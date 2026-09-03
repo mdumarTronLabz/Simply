@@ -1,5 +1,7 @@
 import "../assets/simply_icon.png";
-const iconImage = chrome.runtime.getURL("assets/simply_icon.png")
+
+
+const iconImage = chrome.runtime.getURL("assets/simply_icon.png");
 
 export default function Icon({ onClick }) {
   return (

@@ -42,6 +42,7 @@ export default function App({ targetElement, insertText }) {
         onCopy={handleCopy}
         onClose={() => setView("icon")}
         onAdd={() => setView("form")}
+        onBack={() => setView("panel")}
         onDelete={(id) =>
           setMessages((prev) => prev.filter((m) => m.id !== id))
         }
@@ -53,6 +54,7 @@ export default function App({ targetElement, insertText }) {
       <NewMessageForm
         onSave={handleSaveMessage}
         onBack={() => setView("expanded")}
+        onClose={() => setView("icon")}
       />
     );
 
