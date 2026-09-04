@@ -43,7 +43,7 @@ export default function ExpandedWindow({
               className="simply-icon-only-btn"
               aria-label="Back to Quick Panel"
             >
-              <BackIcon size={28} />
+              <BackIcon size={28} color="#2978e6" className="back-icon" />
             </button>
             <button
               type="button"
@@ -51,7 +51,7 @@ export default function ExpandedWindow({
               onClick={onClose}
               aria-label="Close"
             >
-              <CrossIcon size={16} />
+              <CrossIcon size={16} color="#e00d2a" className="close-icon"/>
             </button>
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function ExpandedWindow({
                     onClick={() => onCopy(m)}
                     aria-label="Copy"
                   >
-                    <CopyIcon size={14} />
+                    <CopyIcon size={14} color="#5d616e" />
                   </button>
                   {/* Edit is wired up in Phase 2 once messages live in the DB — button is here now so the layout is final. */}
                   <button
@@ -104,7 +104,7 @@ export default function ExpandedWindow({
                     disabled
                     aria-label="Edit (Phase 2)"
                   >
-                    <EditIcon size={14} />
+                    <EditIcon size={14} color="#042391" />
                   </button>
                   <button
                     type="button"
@@ -112,7 +112,7 @@ export default function ExpandedWindow({
                     onClick={() => onDelete(m.id)}
                     aria-label="Delete"
                   >
-                    <DeleteIcon size={14} />
+                    <DeleteIcon size={14} color="#e00d2a" />
                   </button>
                 </div>
               </div>
@@ -140,7 +140,7 @@ export default function ExpandedWindow({
             onClick={onAdd}
             aria-label="Add new message"
           >
-            <AddIcon size={16}  color="#ffffff" />
+            <AddIcon size={16} color="#ffffff" className="add-icon" />
           </button>
         </div>
       </div>

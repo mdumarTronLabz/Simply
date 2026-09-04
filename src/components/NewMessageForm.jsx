@@ -43,16 +43,16 @@ export default function NewMessageForm({ onSave, onBack, onClose }) {
             onClick={onBack}
             aria-label="Back"
           >
-            <BackIcon size={28}/>
+            <BackIcon size={28} color="#2978e6" className="back-icon" />
           </button>
-          <span className="simply-panel-title">New Template</span>
+          <span className="simply-panel-title">New Message</span>
           <button
             type="button"
             className="simply-icon-only-btn"
             onClick={onClose}
             aria-label="Close"
           >
-            <CrossIcon size={16}/>
+            <CrossIcon size={16} color="#e00d2a" className="close-icon" />
           </button>
         </div>
 

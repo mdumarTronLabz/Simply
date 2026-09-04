@@ -36,7 +36,7 @@ export default function QuickPanel({
           onClick={onExpand}
           aria-label="Expand View"
         >
-          <ExpandIcon size={20} />
+          <ExpandIcon size={20} color="#e6a029" className="expand-icon" />
         </button>
       </div>
 
@@ -106,7 +106,7 @@ export default function QuickPanel({
           onClick={onClose}
           aria-label="Close"
         >
-          <CrossIcon size={16} />
+          <CrossIcon size={16} color="#e00d2a" className="close-icon" />
         </button>
       </div>
     </div>
