@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import { CATEGORIES } from "../data/messages.js";
 import { AddIcon, DeleteIcon, EditIcon, CopyIcon, BackIcon, CrossIcon, SearchIcon } from "./SVGIcons.jsx";
 import "../assets/simply_icon.png";
+import { useStopHostShortcuts } from "../hooks/useStopHostShortcuts.js";
 
 const iconImage = chrome.runtime.getURL("assets/simply_icon.png");
 
@@ -15,6 +16,8 @@ export default function ExpandedWindow({
 }) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState(null);
+  const searchInputRef = useRef(null);
+  useStopHostShortcuts(searchInputRef);
 
   const filtered = messages.filter((m) => {
     const matchesCategory =
@@ -51,7 +54,7 @@ export default function ExpandedWindow({
               onClick={onClose}
               aria-label="Close"
             >
-              <CrossIcon size={16} color="#e00d2a" className="close-icon"/>
+              <CrossIcon size={16} color="#e00d2a" className="close-icon" />
             </button>
           </div>
         </div>
@@ -64,6 +67,9 @@ export default function ExpandedWindow({
             className="simply-search-input"
             placeholder="Search"
             value={search}
+            type="text"
+            spellCheck="true"
+            ref={searchInputRef}
             onChange={(e) => setSearch(e.target.value)}
             aria-label="Search messages"
           />

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import { CATEGORIES } from "../data/messages.js";
 import { SearchIcon, PanelCopyIcon, ExpandIcon, CrossIcon } from "./SVGIcons.jsx";
 import "../assets/simply_icon.png";
+import {useStopHostShortcuts} from "../hooks/useStopHostShortcuts.js";
 
 const iconImage = chrome.runtime.getURL("assets/simply_icon.png");
 
@@ -15,6 +16,8 @@ export default function QuickPanel({
 }) {
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("All");
+  const searchInputRef = useRef(null);
+  useStopHostShortcuts(searchInputRef);
 
   const filtered = messages.filter((m) => {
     const matchesFilter =
@@ -47,6 +50,9 @@ export default function QuickPanel({
         <input
           className="simply-search-input"
           placeholder="Search..."
+          ref={searchInputRef}
+          type="text"
+          spellCheck="true"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

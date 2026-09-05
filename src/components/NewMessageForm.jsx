@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useState,useRef } from "react";
 import { CATEGORIES } from "../data/messages.js";
-import {  BackIcon, CrossIcon } from "./SVGIcons.jsx";
+import { BackIcon, CrossIcon } from "./SVGIcons.jsx";
+import { useStopHostShortcuts } from "../hooks/useStopHostShortcuts.js";
 
 export default function NewMessageForm({ onSave, onBack, onClose }) {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [selectedPlatforms, setSelectedPlatforms] = useState([]);
   const [customTags, setCustomTags] = useState([]);
+  const messageTitleInputRef = useRef(null);
+  const messageBodyInputRef = useRef(null);
+  useStopHostShortcuts(messageTitleInputRef);
+  useStopHostShortcuts(messageBodyInputRef);
+
 
   function togglePlatform(p) {
     setSelectedPlatforms((prev) =>
@@ -59,7 +65,10 @@ export default function NewMessageForm({ onSave, onBack, onClose }) {
         <label className="simply-form-label">Message Title</label>
         <input
           className="simply-form-input"
+          type="text"
           placeholder="Intro Message"
+          spellCheck="true"
+          ref={messageTitleInputRef}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -78,6 +87,8 @@ export default function NewMessageForm({ onSave, onBack, onClose }) {
           className="simply-form-textarea"
           placeholder="Type your message here..."
           value={body}
+          ref={messageBodyInputRef}
+          spellCheck="true"
           onChange={(e) => setBody(e.target.value)}
         />
 
