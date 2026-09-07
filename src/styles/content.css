@@ -101,7 +101,7 @@
 .simply-panel,
 .simply-expanded,
 .simply-form {
-  font-family:var(--font-body);
+  font-family: var(--font-body);
   color: #1c1e21;
   box-sizing: border-box;
   --font-body: "Inter", -apple-system, sans-serif;
@@ -273,6 +273,8 @@
   box-shadow:
     -4px -2px 16px 0px #ffffff,
     4px 2px 16px 0px rgba(169, 202, 243, 0.48);
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .simply-message-card:hover {
@@ -433,6 +435,8 @@
   border-radius: 20px;
   box-shadow: rgba(148, 147, 147, 0.2) 0px 2px 4px;
   transition: transform 0.5s ease-in-out;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 .simply-expanded-row:hover {
   background: #e6eff7;
@@ -547,10 +551,16 @@
   font-size: 13px;
   outline: none;
   font-family: var(--font-title);
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 .simply-form-input:focus,
 .simply-form-textarea:focus {
   border: 1px solid darkblue;
+}
+.simply-form-input:hover,
+.simply-form-textarea:hover {
+  border: 1px solid gray;
 }
 .simply-form-textarea {
   min-height: 130px;
