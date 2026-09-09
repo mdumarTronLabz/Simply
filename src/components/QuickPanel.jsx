@@ -1,6 +1,6 @@
 import { useState,useRef } from "react";
 import { CATEGORIES } from "../data/messages.js";
-import { SearchIcon, PanelCopyIcon, ExpandIcon, CrossIcon } from "./SVGIcons.jsx";
+import { SearchIcon, ExpandIcon, CrossIcon } from "./SVGIcons.jsx";
 import "../assets/simply_icon.png";
 import {useStopHostShortcuts} from "../hooks/useStopHostShortcuts.js";
 
@@ -73,7 +73,7 @@ export default function QuickPanel({
 
       <div className="simply-message-list">
         {filtered.map((m) => (
-          <div key={m.id} className="simply-message-card">
+          <div key={m.id} className="simply-message-card" onClick={() => onCopy(m)}>
             <div className="simply-message-card-top">
               <span className="simply-message-title">{m.title}</span>
 
@@ -89,13 +89,6 @@ export default function QuickPanel({
                     </span>
                   ))}
               </div>
-              <button
-                type="button"
-                className="simply-copy-btn"
-                onClick={() => onCopy(m)}
-              >
-                <PanelCopyIcon size={14} />
-              </button>
             </div>
             <p className="simply-message-preview">{m.body}</p>
           </div>

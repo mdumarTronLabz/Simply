@@ -275,6 +275,7 @@
     4px 2px 16px 0px rgba(169, 202, 243, 0.48);
   white-space: pre-wrap;
   word-wrap: break-word;
+  cursor: pointer;
 }
 
 .simply-message-card:hover {

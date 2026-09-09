@@ -14,7 +14,7 @@ export const messages = [
     id: "1",
     title: "Problem Talk",
     category: ["Aesthetic", "All"],
-    body: `Hola, We are web designer and we solve Aesthetic Studio's one problem that nobody talks about, handling patients/clients 24/7. 
+    body: `Hi, We are web designer and we solve Aesthetic Studio's one problem that nobody talks about, handling patients/clients 24/7. 
     
 Tell us your biggest problem in your profession and we'll create a solutions that'll put our mind at ease`,
   },
@@ -30,7 +30,7 @@ Tell us your biggest problem in your profession and we'll create a solutions tha
     id: "3",
     title: "Aesthetic Studio Direct Appraoch",
     category: ["Aesthetic", "All"],
-    body: `Hola, I came across your clinic on Instagram, you're doing great work! 
+    body: `Hi, I came across your clinic on Instagram, you're doing great work! 
     
 I work with private aesthetic clinics/studio to help them to build system that make their life easier.
            
@@ -46,7 +46,7 @@ Would you be open to taking a look?`,
     id: "4",
     title: "Direct Approach",
     category: ["All"],
-    body: `Hola, I came across your clinic on Instagram, you're doing great work! 
+    body: `Hi, I came across your clinic on Instagram, you're doing great work! 
     
 I work with private clinics to help them to build system that make their life easier.
 
