@@ -1,4 +1,4 @@
-import { useState,useRef } from "react";
+import { useState,useRef,forwardRef } from "react";
 import { CATEGORIES } from "../data/messages.js";
 import { AddIcon, DeleteIcon, EditIcon, CopyIcon, BackIcon, CrossIcon, SearchIcon } from "./SVGIcons.jsx";
 import "../assets/simply_icon.png";
@@ -6,14 +6,14 @@ import { useStopHostShortcuts } from "../hooks/useStopHostShortcuts.js";
 
 const iconImage = chrome.runtime.getURL("assets/simply_icon.png");
 
-export default function ExpandedWindow({
+const ExpandedWindow =forwardRef (function ExpandedWindow({
   messages,
   onCopy,
   onClose,
   onAdd,
   onDelete,
   onBack
-}) {
+},ref) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState(null);
   const searchInputRef = useRef(null);
@@ -29,7 +29,7 @@ export default function ExpandedWindow({
 
   return (
     <div className="simply-overlay">
-      <div className="simply-expanded">
+      <div className="simply-expanded" ref={ref}>
         <div className="simply-expanded-header">
           <span className="simply-panel-title">
             Simply{" "}
@@ -152,4 +152,6 @@ export default function ExpandedWindow({
       </div>
     </div>
   );
-}
+})
+
+export default ExpandedWindow;

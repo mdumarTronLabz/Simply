@@ -1,4 +1,4 @@
-import { useState,useRef } from "react";
+import { useState,useRef,forwardRef } from "react";
 import { CATEGORIES } from "../data/messages.js";
 import { SearchIcon, ExpandIcon, CrossIcon } from "./SVGIcons.jsx";
 import "../assets/simply_icon.png";
@@ -8,12 +8,8 @@ const iconImage = chrome.runtime.getURL("assets/simply_icon.png");
 
 const FILTERS =CATEGORIES;
 
-export default function QuickPanel({
-  messages,
-  onCopy,
-  onClose,
-  onExpand
-}) {
+const QuickPanel = forwardRef(function QuickPanel({ messages, onCopy, onClose, onExpand },ref) {
+
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("All");
   const searchInputRef = useRef(null);
@@ -28,7 +24,7 @@ export default function QuickPanel({
   });
 
   return (
-    <div className="simply-panel">
+    <div className="simply-panel" ref={ref}>
       <div className="simply-panel-header">
         <span className="simply-panel-title">
           <img src={iconImage} alt="simply icon" className="simply-icon-img" />
@@ -73,7 +69,11 @@ export default function QuickPanel({
 
       <div className="simply-message-list">
         {filtered.map((m) => (
-          <div key={m.id} className="simply-message-card" onClick={() => onCopy(m)}>
+          <div
+            key={m.id}
+            className="simply-message-card"
+            onClick={() => onCopy(m)}
+          >
             <div className="simply-message-card-top">
               <span className="simply-message-title">{m.title}</span>
 
@@ -110,4 +110,6 @@ export default function QuickPanel({
       </div>
     </div>
   );
-}
+})
+
+export default QuickPanel;
